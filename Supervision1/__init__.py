@@ -2,6 +2,7 @@
 # Author: Edgar, el398@cam.ac.uk
 
 from Alignments import *
+from Folding import *
 
 if __name__ == '__main__':
     
@@ -31,8 +32,14 @@ if __name__ == '__main__':
     print "Score:", res[0][len(a)][len(b)]
     print "*******************************************"
     
-    # Implementing affine gap would require maintaining several matrices in 
-    # LCS (F, G, H, V) and a different initialisation expression for V
+    # Implementing affine gap would require maintaining two more matrices, that
+    # would maintain a number of gaps (in terms of score or literally number of
+    # gaps) introduced in each string (in the column, or in the row of the 
+    # score matrix). Base cases would also have to be initialised accordingly.
+    # 
+    # For scoring alignments, we can use a function proportional to the lengths
+    # of individual blocks. Luckily score matrix lets us extract this, with
+    # match-mismatch penalties integrated.
     
     ## 1.2 Dynamic programming
     # Similarly to a |v| x |w| matrix we build for dynamic programming
@@ -51,4 +58,14 @@ if __name__ == '__main__':
     # with having larger gaps), which should be non-zero (prefer alignment)
     
     ## 2.1 Nussinov algorithm
+    for seq in ["GGGAAAUCC", "CCUUAAGGAGAGAGCCUUAAGG", "AAGUUCGGUCC"]:
+        res = nussinov_fold(seq)
+        dbr = nussinov_brackets(seq, res)
+        print "*******************************************"
+        print "Folded RNA:"
+        print seq
+        print dbr
+        print "*******************************************"
+        
+        
     
