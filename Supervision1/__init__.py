@@ -4,8 +4,7 @@
 from Alignments import *
 from Folding import *
 
-if __name__ == '__main__':
-    
+if __name__ == '__main__':    
     # 1.1 Implement Needleman-Wunsch and Smith-Waterman
     
     # Test for global alignment
@@ -58,7 +57,7 @@ if __name__ == '__main__':
     # with having larger gaps), which should be non-zero (prefer alignment)
     
     ## 2.1 Nussinov algorithm
-    for seq in ["GGGAAAUCC", "CCUUAAGGAGAGAGCCUUAAGG", "AAGUUCGGUCC"]:
+    for seq in ["GGGAAAUCC", "CCUUAAGGAGAGAGCCUUAAGG"]:
         res = nussinov_fold(seq)
         dbr = nussinov_brackets(seq, res)
         print "*******************************************"
@@ -67,5 +66,7 @@ if __name__ == '__main__':
         print dbr
         print "*******************************************"
         
-        
-    
+    ## 2.2 Nussinov without zero-length loops
+    # We can try and enforce loops with length >= 1 by making Match condition
+    # apply only if (i, j) is further apart than 1 element (j - i > 1)
+   
