@@ -19,6 +19,7 @@ if __name__ == '__main__':
     print "Score:", res[0][len(a)][len(b)]
     print "*******************************************"
     
+    # TODO: this is wrong, will reimplement    
     # Test for local alignment
     a, b = "TAATA", "TACTAA"
     res = local_align(a, b)
