@@ -29,25 +29,25 @@
 %      | 0     0     0     0     1 |
 
 % b)
-f45 = [1; 0; 0; 2; 2];
+b = [1; 0; 0; 2; 2];
 A_star = toeplitz([-3, 2, 1, 0, 0, 0, 0], [-3, 0, 0, 0, 0]);
-c = (A_star * f45)' % Transpose for printing in 1 row
+c = (A_star * b)' % Transpose for printing in 1 row
 
-conv([-3, 2, 1], [1, 0, 0, 2, 2])
+c_conv = conv([-3, 2, 1], [1, 0, 0, 2, 2])
 
 % c) Solving for b
-round(linsolve(A_star, c'))'
+b_solved = round(linsolve(A_star, c'))'
 
 %%
 % *Exercise 7* 
 %
-% Behaviour of holding the pulse for the constant is equivalent to 
+% Behaviour of holding the pulse for some time is equivalent to 
 % mathematically multiplying sampled signal (comb of different heights),
-% by a rectangle function, producing a kind of a step function.
+% with a rectangle function, producing a kind of a step function.
 %
 % In frequency domain, this is equivalent to convolving the FT of the 
 % sampled signal (also a comb) with sinc function (FT of rectangle func.),
-% so spectrum becomes a set of superimposed sinc functions. 
+% so the spectrum becomes a set of superimposed sinc functions. 
 %
 
 %%
@@ -78,6 +78,8 @@ plot(z, 'g');
 legend('x_n = 45Hz bandpassed 300Hz noise', ...
        'y_n = x_n sampled at 100Hz', ...
        'z_n = 50Hz bandpassed y_n');
+   
+% x_n and z_n almost don't differ.
 
 % b) So that the second filter doesn't discard useful information. 
 % Bandpassing signal whose highest frequency is 45Hz with a 50Hz
